@@ -1,8 +1,8 @@
 import React from 'react'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom'
-import MenuBar from './MenuBar'
-import Routers from './Routers'
+import MenuBar from '@/MenuBar'
+import routes from '@/Routes/Routes'
 
 const { Header, Content, Footer } = Layout
 
@@ -13,7 +13,21 @@ const Home = (props) => {
       <Layout>
         <Content>
           <Header className="ant-menu-dark">Header</Header>
-          <Routers />
+          <Switch>
+            {
+              routes.map((route, index) => {
+                return (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    component={route.main}
+                  />
+                )
+              })
+            }
+            <Redirect to="/" />
+          </Switch>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
           i m footeri m footeri m footeri m footeri m footeri m footer

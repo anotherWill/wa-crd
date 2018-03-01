@@ -13,14 +13,11 @@ export default function asyncComponent(importComponent) {
     }
 
     async componentDidMount() {
-      try {
-        const { default: component } = await importComponent()
-        this.setState({
-          component: component
-        })
-      } catch (error) {
-        throw Error(error)
-      }
+      const { default: component } = await importComponent()
+
+      this.setState({
+        component: component
+      })
     }
 
     render() {

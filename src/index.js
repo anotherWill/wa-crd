@@ -10,7 +10,6 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom'
-import BasicExample from './BasicExample'
 import Home from './Home'
 
 ReactDOM.render(
