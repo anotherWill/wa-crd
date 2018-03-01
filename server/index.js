@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var config = require('../config/index.js');
+var proxy = require('http-proxy-middleware')
 
 app.use('/', require('connect-history-api-fallback')());
 app.use('/', express.static(config.staticPath));
@@ -14,11 +15,11 @@ if (process.env.NODE_ENV !== 'production') {
   var webpackDevMiddleware = require('webpack-dev-middleware');
   app.use(webpackDevMiddleware(webpackCompiled, {
     publicPath: config.publicPath,
-    stats: {colors: true},
-    lazy: false, 
+    stats: { colors: true },
+    lazy: false,
     watchOptions: {
-        aggregateTimeout: 300,
-        poll: true
+      aggregateTimeout: 300,
+      poll: true
     },
   }));
 
@@ -26,7 +27,15 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(webpackHotMiddleware(webpackCompiled));
 }
 
-var server = app.listen(2000, function() {
-  var port = server.address().port;
-  console.log('Open http://localhost:%s', port);
-});
+var options = {
+  target: 'https://cnodejs.org', // target host 
+  changeOrigin: true,               // needed for virtual hosted sites 
+  pathRewrite: { '^/nodeapi': '/api/v1' }
+}
+
+app.use('/nodeapi', proxy(options))
+
+var server = app.listen(2000, function () {
+  var port = server.address().port
+  console.log('Open http//localhost:%s', port)
+})

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom'
-import asyncComponent from '@/asyncComponent'
+import asyncComponent from '@/pages/asyncComponent'
 
 // 菜单路由
 export default [
@@ -16,7 +16,7 @@ export default [
     main: asyncComponent(() => import(
       /* webpackChunkName: "one" */
       /* webpackMode: "lazy" */
-      '@/OptionOne'
+      '@/pages/OptionOne'
     )),
   },
   {
@@ -25,7 +25,7 @@ export default [
     main: asyncComponent(() => import(
       /* webpackChunkName: "two" */
       /* webpackMode: "lazy" */
-      '@/OptionTwo'
+      '@/pages/OptionTwo'
     ))
   },
   {
@@ -34,7 +34,7 @@ export default [
     main: asyncComponent(() => import(
       /* webpackChunkName: "tom" */
       /* webpackMode: "lazy" */
-      '@/Users/Tom'
+      '@/pages/Users/Tom'
     ))
   }, {
     path: '/user/jack',
@@ -42,7 +42,7 @@ export default [
     main: asyncComponent(() => import(
       /* webpackChunkName: "jack" */
       /* webpackMode: "lazy" */
-      '@/Users/Jack'
+      '@/pages/Users/Jack'
     ))
   }
 ]

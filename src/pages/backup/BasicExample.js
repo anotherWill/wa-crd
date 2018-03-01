@@ -5,7 +5,7 @@ import {
   Link
 } from 'react-router-dom'
 // import Counter from './Counter'
-import AsyncLoader from './AsyncLoader'
+import AsyncLoader from '@/pages/AsyncLoader'
 
 
 const Home = () => (

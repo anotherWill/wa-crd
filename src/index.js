@@ -1,6 +1,7 @@
 require("babel-core/register")
 require("babel-polyfill")
-import React from 'react'  // 必须引入
+
+import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import {
@@ -10,7 +11,7 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom'
-import Home from './Home'
+import Home from '@/pages/Home'
 
 ReactDOM.render(
   <AppContainer>

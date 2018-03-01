@@ -1,8 +1,8 @@
 import React from 'react'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom'
-import MenuBar from '@/MenuBar'
-import routes from '@/Routes/Routes'
+import MenuBar from '@/pages/MenuBar'
+import routes from '@/pages/Routes/Routes'
 
 const { Header, Content, Footer } = Layout
 

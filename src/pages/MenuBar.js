@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Layout, Icon, Button } from 'antd'
-const { Sider } = Layout
 import { NavLink, Link } from 'react-router-dom'
+import axios from '@/utils/axios'
+import api from '@/utils/api'
 
+const { Sider } = Layout
 const SubMenu = Menu.SubMenu
 
 class MenuBar extends React.Component {
@@ -13,6 +15,14 @@ class MenuBar extends React.Component {
 
   static contextTypes = {
     router: PropTypes.object.isRequired
+  }
+
+  componentDidMount() {
+    this.getTopics()
+  }
+
+  async getTopics() {
+    const result = await axios(api.topics)
   }
 
   onCollapse = (collapsed) => {

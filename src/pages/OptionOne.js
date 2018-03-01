@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch, Redirect, Link } from 'react-router-dom'
-import SubOption from './SubOption'
-import { Container } from '@/common'
+import SubOption from '@/pages/SubOption'
+import { Container } from '@/pages/common'
 
 const routes = [
   {

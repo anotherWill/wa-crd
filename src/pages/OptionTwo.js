@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from '@/common'
+import { Container } from '@/pages/common'
 
 const OptionTwo = (props) => {
   return (
