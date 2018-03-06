@@ -1,18 +1,17 @@
 import React from 'react'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom'
 import asyncComponent from '@/pages/asyncComponent'
+import Welcome from '@/pages/Welcome'
 
 // 菜单路由
 export default [
   {
     path: '/',
     exact: true,
-    sidebar: () => <div>home!</div>,
-    name: 'welcome'
+    main: Welcome
   },
   {
     path: '/option/one',
-    sidebar: () => <div>bubblegum!</div>,
     main: asyncComponent(() => import(
       /* webpackChunkName: "one" */
       /* webpackMode: "lazy" */
@@ -21,7 +20,6 @@ export default [
   },
   {
     path: '/option/two',
-    sidebar: () => <div>bubblegum!</div>,
     main: asyncComponent(() => import(
       /* webpackChunkName: "two" */
       /* webpackMode: "lazy" */
@@ -30,7 +28,6 @@ export default [
   },
   {
     path: '/user/Tom',
-    sidebar: () => <div>shoelaces!</div>,
     main: asyncComponent(() => import(
       /* webpackChunkName: "tom" */
       /* webpackMode: "lazy" */
@@ -38,7 +35,6 @@ export default [
     ))
   }, {
     path: '/user/jack',
-    sidebar: () => <div>shoelaces!</div>,
     main: asyncComponent(() => import(
       /* webpackChunkName: "jack" */
       /* webpackMode: "lazy" */

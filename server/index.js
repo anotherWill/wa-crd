@@ -2,9 +2,18 @@ var express = require('express');
 var app = express();
 var config = require('../config/index.js');
 var proxy = require('http-proxy-middleware')
+const compression = require('compression'); /** 开启Gzip */
 
+app.set('trust proxy', true);
+app.disable('x-powered-by');
+
+app.use(compression());
 app.use('/', require('connect-history-api-fallback')());
-app.use('/', express.static(config.staticPath));
+
+// 优化 -> dll文件放到static
+app.use(express.static(config.distPath));
+app.use(express.static(config.buildPath));
+app.use(express.static('static'));
 
 if (process.env.NODE_ENV !== 'production') {
 
@@ -21,7 +30,7 @@ if (process.env.NODE_ENV !== 'production') {
       aggregateTimeout: 300,
       poll: true
     },
-  }));
+  }))
 
   var webpackHotMiddleware = require('webpack-hot-middleware');
   app.use(webpackHotMiddleware(webpackCompiled));

@@ -1,7 +1,7 @@
-1、webpack.config - output - chunkfilename - name ☑️
+1、webpack.config - output - chunkfilename - name☑️
 2、require.ensure/import  ☑️
-3、webpack分离 
-4、添加样式
+3、webpack分离 ️️☑️
+4、添加样式️️️️☑️
 5、异步☑️
 
 
