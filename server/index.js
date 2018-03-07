@@ -10,10 +10,8 @@ app.disable('x-powered-by');
 app.use(compression());
 app.use('/', require('connect-history-api-fallback')());
 
-// 优化 -> dll文件放到static
 app.use(express.static(config.distPath));
 app.use(express.static(config.buildPath));
-app.use(express.static('static'));
 
 if (process.env.NODE_ENV !== 'production') {
 
