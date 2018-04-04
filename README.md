@@ -1,4 +1,4 @@
-# React Page: webpack + React + React-router + axios + babel + less + antd
+# A React Page template
 
 ------
 
@@ -7,6 +7,9 @@
 > * use async/await 
 > * antd
 > * dynamic router
+> * axios
+> * less
+
 
 ------
 
