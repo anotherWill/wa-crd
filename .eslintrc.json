@@ -12,10 +12,6 @@
     }
   },
   "rules": {
-    "indent": [
-      "error",
-      2
-    ],
     "no-console": "off",
     "no-dupe-args": 2, //函数参数不能重复
     "no-duplicate-case": 2, //switch中的case标签不能重复
