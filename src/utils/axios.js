@@ -16,8 +16,8 @@ export default (url, method = 'GET', param = {}) => {
 
   return axios({
     method: method,
-    url: `/nodeapi/${url}`,
-    params: {},
+    url: `/${url}`,
+    params: { },
     data: param
     
   })

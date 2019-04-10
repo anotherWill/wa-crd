@@ -52,7 +52,7 @@ module.exports = {
         }]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif|svg|jpg)(\?.*)?$/,
         use: 'url-loader?prefix=images/&name=[name]_[hash:8].[ext]&limit=8192&outputPath=images'
       },
       {

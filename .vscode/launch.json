@@ -7,8 +7,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "启动程序",
-      "program": "${workspaceRoot}/server/index.js"
+      "name": "ff",
+      "program": "${workspaceFolder}/server/index.js"
     }
   ]
 }

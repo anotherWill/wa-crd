@@ -1,5 +1,11 @@
 # A React Page template
 
+
+mysql pwd:
+root
+123456
+
+net start mysql
 ------
 
 > * single page application

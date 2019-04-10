@@ -1,3 +1,5 @@
 export default {
-  topics: 'topics'
+  login: 'login',
+  register: 'register',
+  logout: 'logout',
 }

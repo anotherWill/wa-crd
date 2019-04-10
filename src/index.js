@@ -11,15 +11,21 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom'
+import "antd/dist/antd.min.css"
 import Home from '@/pages/Home'
+import Welcome from '@/pages/Welcome'
+import Login from '@/pages/Login'
+import Register from '@/pages/Register'
+
 
 ReactDOM.render(
   <AppContainer>
     <Router>
       <Switch>
-        {/*<Route exact path="/" component={LoginContainer}/>*/}
+        <Route exact path="/login" component={Login}/>
+        <Route exact path="/register" component={Register}/>
         <Route path="/" component={Home}/>
-        {/*<Redirect to="/home"/>*/}
+        {/* <Redirect to="/"/> */}
       </Switch>
     </Router>
   </AppContainer>,

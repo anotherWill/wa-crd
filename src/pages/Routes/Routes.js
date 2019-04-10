@@ -2,6 +2,8 @@ import React from 'react'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom'
 import asyncComponent from '@/pages/asyncComponent'
 import Welcome from '@/pages/Welcome'
+import Home from '@/pages/Home'
+
 
 // 菜单路由
 export default [
@@ -9,6 +11,15 @@ export default [
     path: '/',
     exact: true,
     main: Welcome
+  },
+  {
+    path: '/user/applyActivity',
+    // exact: true,
+    main: asyncComponent(() => import(
+      /* webpackChunkName: "applyActivity" */
+      /* webpackMode: "lazy" */
+      '@/pages/ApplyActivity'
+    )),
   },
   {
     path: '/option/one',
