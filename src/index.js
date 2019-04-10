@@ -25,7 +25,6 @@ ReactDOM.render(
         <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
         <Route path="/" component={Home}/>
-        {/* <Redirect to="/"/> */}
       </Switch>
     </Router>
   </AppContainer>,

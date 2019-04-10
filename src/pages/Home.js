@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Layout, Menu, Breadcrumb, Icon, Button } from 'antd'
+import { Layout, Menu, Breadcrumb, Icon, Button, message } from 'antd'
 import { Route, Switch, Redirect, NavLink, Link } from 'react-router-dom'
+import Cookies from 'js-cookie'
 import MenuBar from '@/pages/MenuBar'
 import routes from '@/pages/Routes/Routes'
 import axios from '@/utils/axios'
@@ -15,21 +16,33 @@ const MenuItemGroup = Menu.ItemGroup
 
 class Home extends React.Component {
 
-  // static contextTypes = {
-  //   router: PropTypes.object.isRequired
-  // }
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  }
 
-  constructor(props) {
-    super(props)
-    // console.log(this.context)
-    // this.context.router.history.listen(() => {
-    //   console.log('adfadf')
-    // })
+  componentDidMount() {
+    const ls = this.props.location.state 
+    const isLogined = ls && ls.isLogined
+    if (!isLogined && !Cookies.get('skey')) {
+      this.context.router.history.push('/login')
+    }
+  }
+
+  checkLogin = () => {
+    let skey = Cookies.get('skey')
+    if (!skey) {
+      this.context.router.history.push('/login')
+    }
   }
 
   logout = async () => {
     let result = await axios(api.logout, 'POST', {})
-    console.log(result)
+    if (result.data.ret_code === 'Success') {
+      Cookies.remove('isLogined')
+      this.context.router.history.push('/login')
+    } else {
+      message.error('接口调用失败！')
+    }
   }
 
   render() {

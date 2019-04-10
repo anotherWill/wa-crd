@@ -55,6 +55,7 @@
     "file-loader": "^1.1.9",
     "html-webpack-plugin": "^2.30.1",
     "http-proxy": "^1.16.2",
+    "js-cookie": "^2.2.0",
     "less": "^3.0.1",
     "less-loader": "^4.0.5",
     "postcss-loader": "^2.1.1",

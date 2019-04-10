@@ -69,7 +69,7 @@ app.post('/logout', function (req, res, next) {
 
     // req.session.loginUser = null;
     res.clearCookie(identityKey);
-    res.clearCookie(userType)
+    res.clearCookie('userType')
     res.json({ ret_code: 'Success', ret_msg: '' })
   });
 });
