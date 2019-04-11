@@ -12,8 +12,6 @@ const { Header, Content, Footer } = Layout
 const SubMenu = Menu.SubMenu
 const MenuItemGroup = Menu.ItemGroup
 
-
-
 class Home extends React.Component {
 
   static contextTypes = {
@@ -21,9 +19,12 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    const ls = this.props.location.state 
+    const ls = this.props.location.state
     const isLogined = ls && ls.isLogined
-    if (!isLogined && !Cookies.get('skey')) {
+    if (isLogined) {
+      Cookies.set('isLogined', '1')
+    }
+    if (!isLogined && !Cookies.get('isLogined')) {
       this.context.router.history.push('/login')
     }
   }
@@ -46,6 +47,8 @@ class Home extends React.Component {
   }
 
   render() {
+    const userType = Cookies.get('userType')
+    const isAdmin = userType === 'admin'
     return (
       <Layout className="sider_layout" style={{ minHeight: '100vh' }}>
         <Layout>
@@ -90,25 +93,26 @@ class Home extends React.Component {
                       <span>活动中心</span>
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="activity:2">
+                  {isAdmin ? <Menu.Item key="activity:2">
                     <Link to={{ pathname: "/activity" }}>
                       <Icon type="filter" />
                       <span>活动审核</span>
                     </Link>
-                  </Menu.Item>
-                  <Menu.Item key="activity:3">
+                  </Menu.Item> : null}
+                  {isAdmin ? <Menu.Item key="activity:3">
                     <Link to={{ pathname: "/activity" }}>
                       <Icon type="money-collect" />
                       <span>金额管理</span>
                     </Link>
-                  </Menu.Item>
-                  <Menu.Item key="activity:4">
+                  </Menu.Item> : null}
+                  {isAdmin ? <Menu.Item key="activity:4">
                     <Link to={{ pathname: "/activity" }}>
                       <Icon type="mail" />
                       <span>活动留言管理</span>
                     </Link>
-                  </Menu.Item>
+                  </Menu.Item> : null}
                 </SubMenu>
+                {isAdmin ? 
                 <SubMenu title={<span className="submenu-title-wrapper"><Icon type="team" />会员管理</span>}>
                   <Menu.Item key="user:1">
                     <Link to={{ pathname: "/activity" }}>
@@ -122,7 +126,7 @@ class Home extends React.Component {
                       <span>添加用户</span>
                     </Link>
                   </Menu.Item>
-                </SubMenu>
+                </SubMenu> : null}
               </Menu>
               <Button onClick={this.logout} icon="logout" style={{ float: 'right', marginTop: 16 }}>注销</Button>
             </Header>

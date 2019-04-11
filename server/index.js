@@ -45,6 +45,7 @@ app.post('/login', function (req, res, next) {
         }
         req.session.loginUser = info.name
         res.cookie('userType', info.name === 'admin' ? 'admin' : 'normal')
+        res.cookie('userId', results[0].id)
         res.json({ ret_code: 'Success', ret_msg: '登录成功' })
       });
     }
@@ -74,12 +75,18 @@ app.post('/logout', function (req, res, next) {
   });
 });
 
-// app.get('*', function(req, res, next) {
-//   var sess = req.session;
-//   var loginUser = sess.loginUser;
-//   var isLogined = !!loginUser;
-//   next()
-// })
+app.post('/applyActivity', function (req, res, next) {
+  services.applyActivity(req, res)
+})
+
+app.post('/getPersonalActivity', function(req, res, next) {
+  services.getPersonalActivity(req, res)
+})
+
+app.post('/deleteActivity', function(req, res, next) {
+  services.deleteActivity(req, res)
+
+})
 
 app.use(express.static(config.distPath));
 app.use(express.static(config.buildPath));
