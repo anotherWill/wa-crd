@@ -36,6 +36,45 @@ const getPersonalActivity = function(req, res) {
   })
 }
 
+const getNewActivity = function(req, res) {
+  let info = req.body
+  let param = [info.activityId]
+  let sql = 'SELECT * FROM activity WHERE status = "pending"'
+  DB.query(sql, [], (result, fields) => {
+    res.json({
+      ret_msg: '',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
+
+const getActivity = function(req, res) {
+  let info = req.body
+  let param = [info.activityId]
+  let sql = 'SELECT * FROM activity WHERE status = "pass"'
+  DB.query(sql, [], (result, fields) => {
+    res.json({
+      ret_msg: '',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
+
+const passActivity = function(req, res) {
+  let info = req.body
+  let param = [info.id]
+  let sql = 'UPDATE activity SET status = "pass" WHERE id = ?'
+  DB.query(sql, param, (result, fields) => {
+    res.json({
+      ret_msg: '操作成功',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
+
 const deleteActivity = function(req, res) {
   let info = req.body
   let param = [info.activityId]
@@ -48,10 +87,56 @@ const deleteActivity = function(req, res) {
   })
 }
 
+const returnActivity = function(req, res) {
+  let info = req.body
+  let param = [info.id]
+  let sql = 'UPDATE activity SET status = "unpass" WHERE id = ?'
+  DB.query(sql, param, (result, fields) => {
+    res.json({
+      ret_msg: '操作成功',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
+
+const joinActivity = function(req, res) {
+  let info = req.body
+  let param = [info.userid, info.id,]
+  let sql = 'UPDATE activity SET userid = ? WHERE id = ?'
+  DB.query(sql, param, (result, fields) => {
+    res.json({
+      ret_msg: '活动参加成功',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
+
+const unJoinActivity = function(req, res) {
+  let info = req.body
+  let param = [info.id]
+  let sql = 'UPDATE activity SET userid = NULL WHERE id = ?'
+  DB.query(sql, param, (result, fields) => {
+    res.json({
+      ret_msg: '取消成功',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
+
+
 module.exports = {
   registerUser,
   applyActivity,
   getPersonalActivity,
   deleteActivity,
+  getNewActivity,
+  passActivity,
+  returnActivity,
+  getActivity,
+  joinActivity,
+  unJoinActivity
 }
 

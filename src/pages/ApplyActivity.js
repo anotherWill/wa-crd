@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  Form, Input, Select, Button, message, DatePicker, Card, Table, Divider, Tag, Tabs
+  Form, Input, Button, message, DatePicker, Card, Table, Tabs
 } from 'antd'
-import { Route, Switch, Redirect, NavLink, Link } from 'react-router-dom'
 import axios from '@/utils/axios'
 import api from '@/utils/api'
 import locale from 'antd/lib/date-picker/locale/zh_CN'
@@ -67,8 +66,8 @@ class ApplyActivity extends React.Component {
           case 'pass':
             list[i].status = '审核通过'
             break
-          case 'back':
-            list[i].status = '驳回'
+          case 'unpass':
+            list[i].status = '审核不通过'
             break
         }
       }

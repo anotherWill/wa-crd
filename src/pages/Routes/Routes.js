@@ -20,6 +20,27 @@ export default [
       /* webpackMode: "lazy" */
       '@/pages/ApplyActivity'
     )),
+  },{
+    path: '/user/joinedActivity',
+    // exact: true,
+    main: asyncComponent(() => import(
+      /* webpackMode: "lazy" */
+      '@/pages/ReviewActivity'
+    )),
+  }, {
+    path: '/activity/review',
+    // exact: true,
+    main: asyncComponent(() => import(
+      /* webpackMode: "lazy" */
+      '@/pages/ReviewActivity'
+    )),
+  }, {
+    path: '/activity/center',
+    // exact: true,
+    main: asyncComponent(() => import(
+      /* webpackMode: "lazy" */
+      '@/pages/ActivityCenter'
+    )),
   },
   {
     path: '/option/one',

@@ -85,8 +85,32 @@ app.post('/getPersonalActivity', function(req, res, next) {
 
 app.post('/deleteActivity', function(req, res, next) {
   services.deleteActivity(req, res)
-
 })
+
+app.post('/getNewActivity', function(req, res, next) {
+  services.getNewActivity(req, res)
+})
+
+app.post('/passActivity', function(req, res, next) {
+  services.passActivity(req, res)
+})
+
+app.post('/returnActivity', function(req, res, next) {
+  services.returnActivity(req, res)
+})
+
+app.post('/getActivity', function(req, res, next) {
+  services.getActivity(req, res)
+})
+
+app.post('/joinActivity', function(req, res, next) {
+  services.joinActivity(req, res)
+})
+
+app.post('/unJoinActivity', function(req, res, next) {
+  services.unJoinActivity(req, res)
+})
+
 
 app.use(express.static(config.distPath));
 app.use(express.static(config.buildPath));

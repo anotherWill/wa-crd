@@ -74,7 +74,7 @@ class Home extends React.Component {
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="user:2">
-                    <Link to={{ pathname: "/option/one" }}>
+                    <Link to={{ pathname: "/user/joinedActivity" }}>
                       <Icon type="paper-clip" />
                       <span>已参加的活动</span>
                     </Link>
@@ -88,13 +88,13 @@ class Home extends React.Component {
                 </SubMenu>
                 <SubMenu title={<span className="submenu-title-wrapper"><Icon type="heart" />活动中心</span>}>
                   <Menu.Item key="activity:1">
-                    <Link to={{ pathname: "/activity" }}>
+                    <Link to={{ pathname: "/activity/center" }}>
                       <Icon type="heart" />
                       <span>活动中心</span>
                     </Link>
                   </Menu.Item>
                   {isAdmin ? <Menu.Item key="activity:2">
-                    <Link to={{ pathname: "/activity" }}>
+                    <Link to={{ pathname: "/activity/review" }}>
                       <Icon type="filter" />
                       <span>活动审核</span>
                     </Link>
@@ -108,19 +108,19 @@ class Home extends React.Component {
                   {isAdmin ? <Menu.Item key="activity:4">
                     <Link to={{ pathname: "/activity" }}>
                       <Icon type="mail" />
-                      <span>活动留言管理</span>
+                      <span>留言管理</span>
                     </Link>
                   </Menu.Item> : null}
                 </SubMenu>
                 {isAdmin ? 
                 <SubMenu title={<span className="submenu-title-wrapper"><Icon type="team" />会员管理</span>}>
-                  <Menu.Item key="user:1">
+                  <Menu.Item key="manage:1">
                     <Link to={{ pathname: "/activity" }}>
                       <Icon type="ordered-list" />
                       <span>用户列表</span>
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="user:2">
+                  <Menu.Item key="manage:2">
                     <Link to={{ pathname: "/activity" }}>
                       <Icon type="usergroup-add" />
                       <span>添加用户</span>
@@ -143,7 +143,6 @@ class Home extends React.Component {
                   )
                 })
               }
-              <Redirect to="/home" />
             </Switch>
           </Content>
         </Layout>
