@@ -126,6 +126,96 @@ const unJoinActivity = function(req, res) {
   })
 }
 
+const getJoinedActivity = function(req, res) {
+  let info = req.body
+  let param = [info.userid]
+  let sql = 'SELECT * FROM activity WHERE userid = ? and status = "pass"'
+  DB.query(sql, param, (result, fields) => {
+    res.json({
+      ret_msg: '',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
+
+const getUserInfo = function(req, res) {
+  let info = req.body
+  let param = [info.userid]
+  let sql = 'SELECT * FROM user WHERE id = ?'
+  DB.query(sql, param, (result, fields) => {
+    res.json({
+      ret_msg: '',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
+
+const updateInfo = function(req, res) {
+  let info = req.body
+  let param = [info.userName, info.nickName, info.phone, info.favor, info.sex, info.userid]
+  let sql = 'UPDATE user SET userName = ?, nickName = ?, phone = ?, favor = ?, sex = ? WHERE id = ?'
+  DB.query(sql, param, (result, fields) => {
+    res.json({
+      ret_msg: '保存成功',
+      ret_code: 'Success',
+    })
+  })
+}
+
+
+const getAllUser = function(req, res) {
+  let info = req.body
+  let param = [info.userid]
+  let sql = 'SELECT * FROM user'
+  DB.query(sql, param, (result, fields) => {
+    res.json({
+      ret_msg: '',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
+
+const setAdmin = function(req, res) {
+  let info = req.body
+  let param = [info.id]
+  let sql = 'UPDATE user SET type = "admin" WHERE id = ?'
+  DB.query(sql, param, (result, fields) => {
+    res.json({
+      ret_msg: '操作成功',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
+
+const setNormal = function(req, res) {
+  let info = req.body
+  let param = [info.id]
+  let sql = 'UPDATE user SET type = "normal" WHERE id = ?'
+  DB.query(sql, param, (result, fields) => {
+    res.json({
+      ret_msg: '操作成功',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
+
+const deleteUser = function(req, res) {
+  let info = req.body
+  let param = [info.id]
+  let sql = 'DELETE FROM user  WHERE id = ?'
+  DB.query(sql, param, (result, fields) => {
+    res.json({
+      ret_msg: '操作成功',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
 
 module.exports = {
   registerUser,
@@ -137,6 +227,13 @@ module.exports = {
   returnActivity,
   getActivity,
   joinActivity,
-  unJoinActivity
+  unJoinActivity,
+  getJoinedActivity,
+  getUserInfo,
+  updateInfo,
+  getAllUser,
+  setAdmin,
+  setNormal,
+  deleteUser
 }
 

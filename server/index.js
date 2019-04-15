@@ -111,6 +111,34 @@ app.post('/unJoinActivity', function(req, res, next) {
   services.unJoinActivity(req, res)
 })
 
+app.post('/getJoinedActivity', function(req, res, next) {
+  services.getJoinedActivity(req, res)
+})
+
+app.post('/getUserInfo', function(req, res, next) {
+  services.getUserInfo(req, res)
+})
+
+app.post('/updateInfo', function(req, res, next) {
+  services.updateInfo(req, res)
+})
+
+app.post('/getAllUser', function(req, res, next) {
+  services.getAllUser(req, res)
+})
+
+app.post('/setAdmin', function(req, res, next) {
+  services.setAdmin(req, res)
+})
+
+app.post('/setNormal', function(req, res, next) {
+  services.setNormal(req, res)
+})
+
+app.post('/deleteUser', function(req, res, next) {
+  services.deleteUser(req, res)
+})
+
 
 app.use(express.static(config.distPath));
 app.use(express.static(config.buildPath));

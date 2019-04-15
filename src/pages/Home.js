@@ -80,7 +80,7 @@ class Home extends React.Component {
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="user:3">
-                    <Link to={{ pathname: "/option/two" }}>
+                    <Link to={{ pathname: "/user/edit" }}>
                       <Icon type="edit" />
                       <span>个人信息修改</span>
                     </Link>
@@ -100,30 +100,24 @@ class Home extends React.Component {
                     </Link>
                   </Menu.Item> : null}
                   {isAdmin ? <Menu.Item key="activity:3">
-                    <Link to={{ pathname: "/activity" }}>
+                    <Link to={{ pathname: "/activity/notice" }}>
                       <Icon type="money-collect" />
-                      <span>金额管理</span>
+                      <span>新增公告</span>
                     </Link>
                   </Menu.Item> : null}
-                  {isAdmin ? <Menu.Item key="activity:4">
+                  {/* {isAdmin ? <Menu.Item key="activity:4">
                     <Link to={{ pathname: "/activity" }}>
                       <Icon type="mail" />
                       <span>留言管理</span>
                     </Link>
-                  </Menu.Item> : null}
+                  </Menu.Item> : null} */}
                 </SubMenu>
                 {isAdmin ? 
                 <SubMenu title={<span className="submenu-title-wrapper"><Icon type="team" />会员管理</span>}>
                   <Menu.Item key="manage:1">
-                    <Link to={{ pathname: "/activity" }}>
+                    <Link to={{ pathname: "/manage" }}>
                       <Icon type="ordered-list" />
                       <span>用户列表</span>
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="manage:2">
-                    <Link to={{ pathname: "/activity" }}>
-                      <Icon type="usergroup-add" />
-                      <span>添加用户</span>
                     </Link>
                   </Menu.Item>
                 </SubMenu> : null}

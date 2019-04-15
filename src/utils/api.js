@@ -10,5 +10,12 @@ export default {
   returnActivity: 'returnActivity',
   getActivity: 'getActivity',
   joinActivity: 'joinActivity',
-  unJoinActivity: 'unJoinActivity'
+  unJoinActivity: 'unJoinActivity',
+  getJoinedActivity: 'getJoinedActivity',
+  getUserInfo: 'getUserInfo',
+  updateInfo: 'updateInfo',
+  getAllUser: 'getAllUser',
+  setAdmin: 'setAdmin',
+  setNormal: 'setNormal',
+  deleteUser: 'deleteUser'
 }

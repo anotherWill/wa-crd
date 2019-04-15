@@ -25,7 +25,7 @@ export default [
     // exact: true,
     main: asyncComponent(() => import(
       /* webpackMode: "lazy" */
-      '@/pages/ReviewActivity'
+      '@/pages/JoinedActivity'
     )),
   }, {
     path: '/activity/review',
@@ -41,8 +41,21 @@ export default [
       /* webpackMode: "lazy" */
       '@/pages/ActivityCenter'
     )),
-  },
-  {
+  },{
+    path: '/user/edit',
+    // exact: true,
+    main: asyncComponent(() => import(
+      /* webpackMode: "lazy" */
+      '@/pages/EditInfo'
+    )),
+  },{
+    path: '/manage',
+    // exact: true,
+    main: asyncComponent(() => import(
+      /* webpackMode: "lazy" */
+      '@/pages/UserList'
+    )),
+  },{
     path: '/option/one',
     main: asyncComponent(() => import(
       /* webpackChunkName: "one" */
