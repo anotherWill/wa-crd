@@ -17,5 +17,7 @@ export default {
   getAllUser: 'getAllUser',
   setAdmin: 'setAdmin',
   setNormal: 'setNormal',
-  deleteUser: 'deleteUser'
+  deleteUser: 'deleteUser',
+  addNotice: 'addNotice',
+  getNotice: 'getNotice'
 }

@@ -217,6 +217,29 @@ const deleteUser = function(req, res) {
   })
 }
 
+const addNotice = function(req, res) {
+  let info = req.body
+  let param = [info.title, info.content]
+  let sql = 'INSERT INTO notice ( title, content ) values ( ? , ?)'
+  DB.query(sql, param, (result, fields) => {
+    res.json({
+      ret_msg: '添加成功',
+      ret_code: 'Success',
+    })
+  })
+}
+
+const getNotice = function(req, res) {
+  let sql = 'SELECT * FROM notice'
+  DB.query(sql, [], (result, fields) => {
+    res.json({
+      ret_msg: '',
+      ret_code: 'Success',
+      list: result
+    })
+  })
+}
+
 module.exports = {
   registerUser,
   applyActivity,
@@ -234,6 +257,8 @@ module.exports = {
   getAllUser,
   setAdmin,
   setNormal,
-  deleteUser
+  deleteUser,
+  addNotice,
+  getNotice
 }
 

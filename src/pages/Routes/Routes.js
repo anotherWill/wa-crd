@@ -56,6 +56,13 @@ export default [
       '@/pages/UserList'
     )),
   },{
+    path: '/activity/notice',
+    // exact: true,
+    main: asyncComponent(() => import(
+      /* webpackMode: "lazy" */
+      '@/pages/AddNotice'
+    )),
+  },{
     path: '/option/one',
     main: asyncComponent(() => import(
       /* webpackChunkName: "one" */

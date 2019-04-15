@@ -101,7 +101,7 @@ class Home extends React.Component {
                   </Menu.Item> : null}
                   {isAdmin ? <Menu.Item key="activity:3">
                     <Link to={{ pathname: "/activity/notice" }}>
-                      <Icon type="money-collect" />
+                      <Icon type="notification" />
                       <span>新增公告</span>
                     </Link>
                   </Menu.Item> : null}

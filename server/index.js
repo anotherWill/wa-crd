@@ -139,6 +139,15 @@ app.post('/deleteUser', function(req, res, next) {
   services.deleteUser(req, res)
 })
 
+app.post('/addNotice', function(req, res, next) {
+  services.addNotice(req, res)
+})
+
+
+app.post('/getNotice', function(req, res, next) {
+  services.getNotice(req, res)
+})
+
 
 app.use(express.static(config.distPath));
 app.use(express.static(config.buildPath));
