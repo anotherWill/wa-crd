@@ -24,9 +24,19 @@ module.exports = merge(common, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new webpack.HotModuleReplacementPlugin(),
+    
+    // new webpack.LoaderOptionsPlugin({
+    //   minimize: true,
+    //   debug: false
+    // }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: { warnings: false },
+    //   sourceMap: false,
+    //   comments: false
+    // }),
     new webpack.NoEmitOnErrorsPlugin()
   ]
 })

@@ -16,7 +16,7 @@ export default (url, method = 'GET', param = {}) => {
 
   return axios({
     method: method,
-    url: `/${url}`,
+    url: `/${url}?t=${new Date().getTime()}`,
     params: { },
     data: param
     

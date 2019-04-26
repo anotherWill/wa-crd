@@ -3,6 +3,10 @@ import { Route, Switch, Redirect, NavLink } from 'react-router-dom'
 import asyncComponent from '@/pages/asyncComponent'
 import Welcome from '@/pages/Welcome'
 import Home from '@/pages/Home'
+import Loadable from 'react-loadable'
+const Loading = () => {
+	return <div>加载中......</div>
+}
 
 
 // 菜单路由

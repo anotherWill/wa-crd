@@ -12,12 +12,12 @@ export default {
   joinActivity: 'joinActivity',
   unJoinActivity: 'unJoinActivity',
   getJoinedActivity: 'getJoinedActivity',
-  getUserInfo: 'getUserInfo',
   updateInfo: 'updateInfo',
   getAllUser: 'getAllUser',
   setAdmin: 'setAdmin',
   setNormal: 'setNormal',
   deleteUser: 'deleteUser',
   addNotice: 'addNotice',
-  getNotice: 'getNotice'
+  getNotice: 'getNotice',
+  getUserInfo: 'getUserInfo'
 }

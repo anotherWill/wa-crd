@@ -12,28 +12,37 @@ class ActivityCenter extends React.Component {
 
   state = {
     list: [],
+    userinfo: null,
     hadJoined: false
   }
 
   componentDidMount() {
-    this.getActivity()
+    this.getData()
   }
 
-  getActivity = async () => {
-    const result = await axios(api.getActivity, 'POST', {})
+  getData = async () => {
+    const [userinfo, list] = await Promise.all([
+      this.getUserInfo(),
+      this.getActivity()
+    ])
+    this.setState({ userinfo: userinfo.data.list[0], list: list.data.list })
+  }
+
+  getUserInfo = async () => {
     const userid = Cookies.get('userId')
-    if (result.data.ret_code === 'Success') {
-      let list = result.data.list
-      let hasJoined = list.some((l ) => l.userid === +userid)
-      this.setState({ list: result.data.list, hasJoined })
-    }
+    return await axios(api.getUserInfo, 'POST', {userid})
+  }
+
+
+  getActivity = async () => {
+    return await axios(api.getActivity, 'POST', {})
   }
 
   joinActivity = async (record) => {
     const result = await axios(api.joinActivity, 'POST', { id: record.id, userid: Cookies.get('userId') })
     if (result.data.ret_code === 'Success') {
       message.success(result.data.ret_msg, 2)
-      this.getActivity()
+      this.getData()
     } else {
       message.success('活动参加失败', 1500)
     }
@@ -43,13 +52,14 @@ class ActivityCenter extends React.Component {
     const result = await axios(api.unJoinActivity, 'POST', { id: record.id, userid: Cookies.get('userId') })
     if (result.data.ret_code === 'Success') {
       message.success(result.data.ret_msg, 2)
-      this.getActivity()
+      this.getData()
     } else {
       message.success('取消失败', 1500)
     }
   }
 
   render() {
+    const { userinfo, list } = this.state
     const columns = [{
       title: '活动名称',
       dataIndex: 'name',
@@ -70,8 +80,7 @@ class ActivityCenter extends React.Component {
       title: '操作',
       key: 'action',
       render: (text, record) => {
-        const userid = Cookies.get('userId')
-        const joined = record.userid === +userid
+        const joined = userinfo.activityid === record.id
         return(
         <span>
           {

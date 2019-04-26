@@ -61,7 +61,7 @@ class NormalLoginForm extends React.Component {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login-form-button" style={{ width: 320, display: 'block' }}>
-              登录
+              登录222
           </Button>
             或者 <Link to={{ pathname: "/register" }}>去注册账号!</Link>
           </Form.Item>

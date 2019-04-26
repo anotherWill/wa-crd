@@ -26,8 +26,13 @@ app.use(session({
     maxAge: 5000 * 60 * 1000  // 有效期，单位是毫秒
   }
 }));
-app.use(compression());
+// app.use(compression());
 app.use('/', require('connect-history-api-fallback')());
+
+
+// app.use(express.static(config.distPath));
+// app.use(express.static(config.buildPath));
+app.use(express.static(__dirname + '/static'));
 
 
 app.post('/login', function (req, res, next) {
@@ -148,11 +153,6 @@ app.post('/getNotice', function(req, res, next) {
   services.getNotice(req, res)
 })
 
-
-app.use(express.static(config.distPath));
-app.use(express.static(config.buildPath));
-app.use(express.static(__dirname + '/static'));
-
 if (process.env.NODE_ENV !== 'production') {
 
   var webpack = require('webpack');
@@ -173,16 +173,7 @@ if (process.env.NODE_ENV !== 'production') {
   var webpackHotMiddleware = require('webpack-hot-middleware');
   app.use(webpackHotMiddleware(webpackCompiled));
 }
-
-// var options = {
-//   target: 'https://cnodejs.org', // target host 
-//   changeOrigin: true,               // needed for virtual hosted sites 
-//   pathRewrite: { '^/nodeapi': '/api/v1' }
-// }
-
-// app.use('/nodeapi', proxy(options))
-
-var server = app.listen(2000, function () {
+var server = app.listen(8001, function () {
   var port = server.address().port
-  console.log('Open http//localhost:%s', port)
+  console.log('Open http//127.0.0.1:%s', port)
 })

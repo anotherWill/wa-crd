@@ -102,8 +102,8 @@ const returnActivity = function(req, res) {
 
 const joinActivity = function(req, res) {
   let info = req.body
-  let param = [info.userid, info.id,]
-  let sql = 'UPDATE activity SET userid = ? WHERE id = ?'
+  let param = [ info.id, info.userid,]
+  let sql = 'UPDATE user SET activityid = ? WHERE id = ?'
   DB.query(sql, param, (result, fields) => {
     res.json({
       ret_msg: '活动参加成功',
@@ -115,8 +115,8 @@ const joinActivity = function(req, res) {
 
 const unJoinActivity = function(req, res) {
   let info = req.body
-  let param = [info.id]
-  let sql = 'UPDATE activity SET userid = NULL WHERE id = ?'
+  let param = [info.userid]
+  let sql = 'UPDATE user SET activityid = NULL WHERE id = ?'
   DB.query(sql, param, (result, fields) => {
     res.json({
       ret_msg: '取消成功',
@@ -129,13 +129,14 @@ const unJoinActivity = function(req, res) {
 const getJoinedActivity = function(req, res) {
   let info = req.body
   let param = [info.userid]
-  let sql = 'SELECT * FROM activity WHERE userid = ? and status = "pass"'
+  let sql = 'SELECT * FROM activity WHERE id = (SELECT activityid FROM user WHERE id = ? )'
   DB.query(sql, param, (result, fields) => {
     res.json({
       ret_msg: '',
       ret_code: 'Success',
       list: result
     })
+    res.end()
   })
 }
 
@@ -219,8 +220,8 @@ const deleteUser = function(req, res) {
 
 const addNotice = function(req, res) {
   let info = req.body
-  let param = [info.title, info.content]
-  let sql = 'INSERT INTO notice ( title, content ) values ( ? , ?)'
+  let param = [info.title, info.content, info.activity]
+  let sql = 'INSERT INTO notice ( title, content, activityid ) values ( ? , ?, ?)'
   DB.query(sql, param, (result, fields) => {
     res.json({
       ret_msg: '添加成功',

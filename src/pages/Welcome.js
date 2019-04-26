@@ -62,15 +62,15 @@ class Welcome extends React.Component {
   }
 
   componentDidMount() {
-    this.getNotice()
+    // this.getNotice()
   }
 
-  getNotice = async () => {
-    const result = await axios(api.getNotice, 'POST', {})
-    if (result.data.ret_code === 'Success') {
-      this.setState({ notice: result.data.list })
-    }
-  }
+  // getNotice = async () => {
+  //   const result = await axios(api.getNotice, 'POST', {})
+  //   if (result.data.ret_code === 'Success') {
+  //     this.setState({ notice: result.data.list })
+  //   }
+  // }
 
   render() {
     return (

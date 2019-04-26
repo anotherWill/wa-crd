@@ -32,7 +32,7 @@ module.exports = {
             presets: ['env', 'es2015', 'stage-0', 'react'],
             plugins: [
               ['react-hot-loader/babel'],
-              ['import', { "libraryName": "antd", "style": "css" }]
+              ['import', { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
             ]
           }
         }
@@ -72,41 +72,46 @@ module.exports = {
   },
   devtool: 'source-map',
   plugins: [
-    new webpack.DllReferencePlugin({
-      context: config.rootPath,
-      manifest: require('../../dist/vendor-manifest.json')
-    }),
-    new ExtractTextPlugin({
-      filename: 'styles.[contenthash].css'
-    }),
+    // new webpack.DllReferencePlugin({
+    //   context: config.rootPath,
+    //   manifest: require('../../dist/vendor-manifest.json')
+    // }),
+    // new ExtractTextPlugin({
+    //   filename: 'styles.[contenthash].css'
+    // }),
     new ExtractTextPlugin('styles.css'),
     new HtmlWebpackPlugin({
       template: './template/index.html',
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: function (module) {
-        if (module.resource && (/^.*\.(css|scss|less)$/).test(module.resource)) {
-          return false
-        }
-        return module.context && module.context.indexOf("node_modules") !== -1;
-      }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendors',
-      minChunks: function (module, count) {
-        return (
-          module.resource &&
-          /\.js$/.test(module.resource) &&
-          module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
-          ) === 0
-        )
-      }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-      minChunks: Infinity
-    })
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'vendor',
+    //   minChunks: function (module) {
+    //     if (module.resource && (/^.*\.(css|scss|less)$/).test(module.resource)) {
+    //       return false
+    //     }
+    //     return module.context && module.context.indexOf("node_modules") !== -1;
+    //   }
+    // }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'vendors',
+    //   minChunks: function (module, count) {
+    //     return (
+    //       module.resource &&
+    //       /\.js$/.test(module.resource) &&
+    //       module.resource.indexOf(
+    //         path.join(__dirname, '../node_modules')
+    //       ) === 0
+    //     )
+    //   }
+    // }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'common',
+    //   minChunks: Infinity
+    // }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: { warnings: false },
+    //   sourceMap: false,
+    //   comments: false
+    // }),
   ]
 }

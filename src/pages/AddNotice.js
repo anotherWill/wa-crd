@@ -8,9 +8,12 @@ import axios from '@/utils/axios'
 import api from '@/utils/api'
 import Cookies from 'js-cookie'
 const { TextArea } = Input
+const Option = Select.Option
+
 class AddNotice extends React.Component {
 
   state = {
+    list: [],
     title: '',
     content: '',
   }
@@ -19,26 +22,15 @@ class AddNotice extends React.Component {
     router: PropTypes.object.isRequired
   }
 
-
-
-  getUserInfo = async () => {
-    const userid = Cookies.get('userId')
-    const result = await axios(api.getUserInfo, 'POST', {userid})
-    if (result.data.ret_code === 'Success') {
-      let info = result.data.list[0]
-      this.setState({ 
-        username: info.userName, 
-        nickName: info.nickName,
-        phone: info.phone, 
-        address: info.address,
-        favor: info.favor, 
-        sex: info.sex 
-      })
-    }
+  componentDidMount () {
+    this.getActivity()
   }
 
-  handleChange = (value) => {
-    this.setState({ sex: value })
+  getActivity = async () => {
+    let result = await axios(api.getActivity, 'POST', {})
+    if (result.data.ret_code === 'Success') {
+      this.setState({ list: result.data.list })
+    }
   }
 
   handleSubmit = (e) => {
@@ -63,13 +55,6 @@ class AddNotice extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form
-    const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '86',
-    })(
-      <Select style={{ width: 70 }}>
-        <Option value="86">+86</Option>
-      </Select>
-    )
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -92,11 +77,23 @@ class AddNotice extends React.Component {
         },
       },
     }
-    const { username, nickName, phone, address, favor, sex } = this.state
+    const { list } = this.state
     return (
       <div style={{ margin: 18, background: 'white' }}>
-      <h2 style={{ height: 48, lineHeight: '48px', textAlign: 'center', background: '#fff'}}>信息修改頁面</h2>
+      <h2 style={{ height: 48, lineHeight: '48px', textAlign: 'center', background: '#fff'}}>新增公告</h2>
       <Form {...formItemLayout} onSubmit={this.handleSubmit} style={{ width: 480, margin: '0 auto', paddingTop: 50 }}>
+        <Form.Item label="选择活动">
+          {getFieldDecorator('activity', {
+            rules: [{ required: true, message: '请选择活动!' }],
+          })(
+            <Select>
+              { list.map((item, index) => {
+                return <Option value={item.id}>{item.name}</Option>
+              })}
+            </Select>
+            
+          )}
+        </Form.Item>
         <Form.Item label="标题">
           {getFieldDecorator('title', {
             rules: [{ required: true, message: '请输入标题!' }],

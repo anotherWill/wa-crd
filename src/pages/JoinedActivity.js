@@ -22,6 +22,7 @@ class JoinedActivity extends React.Component {
     const userid = Cookies.get('userId')
     const result = await axios(api.getJoinedActivity, 'POST', {userid})
     if (result.data.ret_code === 'Success') {
+      console.log(new Date().getTime())
       let list = result.data.list
       this.setState({ list: result.data.list })
     }

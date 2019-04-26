@@ -17,6 +17,11 @@ import Welcome from '@/pages/Welcome'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 
+window.addEventListener("mousewheel", (e) => {
+  if (e.deltaY === 1) {
+    e.preventDefault()
+  }
+})
 
 ReactDOM.render(
   <AppContainer>
