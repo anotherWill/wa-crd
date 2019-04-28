@@ -62,24 +62,24 @@ class Welcome extends React.Component {
   }
 
   componentDidMount() {
-    // this.getNotice()
+    this.getNotice()
   }
 
-  // getNotice = async () => {
-  //   const result = await axios(api.getNotice, 'POST', {})
-  //   if (result.data.ret_code === 'Success') {
-  //     this.setState({ notice: result.data.list })
-  //   }
-  // }
+  getNotice = async () => {
+    const result = await axios(api.getNotice, 'POST', {})
+    if (result.data.ret_code === 'Success') {
+      this.setState({ notice: result.data.list })
+    }
+  }
 
   render() {
     return (
       <Layout>
         <Carousel autoplay style={{ height: 400 }}>
-          <div><img src={pic1} /></div>
-          <div><img src={pic2} /></div>
-          <div><img src={pic3} /></div>
-          <div><img src={pic4} /></div>
+          <div><img style={{ width: '100%' }} src={pic1} /></div>
+          <div><img style={{ width: '100%' }} src={pic2} /></div>
+          <div><img style={{ width: '100%' }} src={pic3} /></div>
+          <div><img style={{ width: '100%' }} src={pic4} /></div>
         </Carousel>
         <div style={{ display: 'flex', marginTop: 24 }}>
           <div style={{ flex: 4 }}>

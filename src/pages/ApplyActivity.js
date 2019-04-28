@@ -54,7 +54,9 @@ class ApplyActivity extends React.Component {
 
   getPersonalActivity = async () => {
     const userid = Cookies.get('userId')
+    this.setState({ loading: true })
     const result = await axios(api.getPersonalActivity, 'POST', { userid })
+    this.setState({ loading: false })
     if (result.data.ret_code === 'Success') {
       let list = result.data.list
       for (let i = 0; i < list.length; i++) {
@@ -166,7 +168,12 @@ class ApplyActivity extends React.Component {
     return (
       <Tabs onChange={(activeKey) => { this.setState({ activityTab: activeKey }) }} activeKey={this.state.activityTab} defaultActiveKey="1" style={{ background: 'white', margin: 20 }} tabBarStyle={{ height: 50 }}>
         <TabPane tab="我申请的活动" key="1">
-          <Table columns={columns} dataSource={list} />
+          <Button 
+            style={{ marginBottom: 10, marginLeft: 10}} 
+            type="primary" 
+            icon="reload" 
+            onClick={this.getPersonalActivity}>刷新</Button>
+          <Table loading={this.state.loading} columns={columns} dataSource={list} />
         </TabPane>
         <TabPane tab="申请活动" key="2">
           <Card

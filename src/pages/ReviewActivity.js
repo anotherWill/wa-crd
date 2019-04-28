@@ -18,7 +18,9 @@ class ReviewActivity extends React.Component {
   }
 
   getNewActivity = async () => {
+    this.setState({ loading: true })
     const result = await axios(api.getNewActivity, 'POST', {})
+    this.setState({ loading: false })
     if (result.data.ret_code === 'Success') {
       let list = result.data.list
       this.setState({ list: result.data.list })
@@ -79,7 +81,13 @@ class ReviewActivity extends React.Component {
         headStyle={{ textAlign: 'center', fontWeight: 'bold' }}
         style={{ margin: 20 }}
       >
+        <Button 
+          style={{ marginBottom: 10, marginLeft: 10}} 
+          type="primary" 
+          icon="reload" 
+          onClick={this.getNewActivity}>刷新</Button>
         <Table
+          loading={this.state.loading}
           columns={columns}
           expandedRowRender={record => <p style={{ margin: 0 }}>活动描述：{record.description}</p>}
           dataSource={this.state.list} />

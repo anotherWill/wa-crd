@@ -12,6 +12,7 @@ class JoinedActivity extends React.Component {
 
   state = {
     list: [],
+    loading: false,
   }
 
   componentDidMount() {
@@ -20,7 +21,9 @@ class JoinedActivity extends React.Component {
 
   getJoinedActivity = async () => {
     const userid = Cookies.get('userId')
+    this.setState({ loading: true })
     const result = await axios(api.getJoinedActivity, 'POST', {userid})
+    this.setState({ loading: false })
     if (result.data.ret_code === 'Success') {
       console.log(new Date().getTime())
       let list = result.data.list
@@ -50,7 +53,13 @@ class JoinedActivity extends React.Component {
     return (
       <div style={{ margin: 18, background: 'white' }}>
       <h2 style={{ height: 48, lineHeight: '48px', textAlign: 'center', background: '#fff'}}>已參加的活動</h2>
+      <Button 
+        style={{ marginBottom: 10, marginLeft: 10}} 
+        type="primary" 
+        icon="reload" 
+        onClick={this.getJoinedActivity}>刷新</Button>
       <Table
+        loading={this.state.loading}
         columns={columns}
         expandedRowRender={record => <p style={{ margin: 0 }}>活动详情：{record.description}</p>}
         dataSource={this.state.list} />

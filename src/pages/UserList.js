@@ -10,7 +10,8 @@ import api from '@/utils/api'
 class UserList extends React.Component {
 
   state = {
-    list: []
+    list: [],
+    loading: false,
   }
 
   componentDidMount() {
@@ -18,7 +19,9 @@ class UserList extends React.Component {
   }
 
   getAllUser = async () => {
+    this.setState({ loading: true })
     const result = await axios(api.getAllUser, 'POST', {})
+    this.setState({ loading: false })
     if (result.data.ret_code === 'Success') {
       let list = result.data.list
       this.setState({ list: result.data.list })
@@ -82,7 +85,13 @@ class UserList extends React.Component {
         headStyle={{ textAlign: 'center', fontWeight: 'bold' }}
         style={{ margin: 20 }}
       >
+        <Button 
+          style={{ marginBottom: 10, marginLeft: 10}} 
+          type="primary" 
+          icon="reload" 
+          onClick={this.getAllUser}>刷新</Button>
         <Table
+          loading={this.state.loading}
           columns={columns}
           dataSource={this.state.list} />
       </Card>

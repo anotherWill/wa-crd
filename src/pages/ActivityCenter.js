@@ -21,11 +21,12 @@ class ActivityCenter extends React.Component {
   }
 
   getData = async () => {
+    this.setState({ loading: true })
     const [userinfo, list] = await Promise.all([
       this.getUserInfo(),
       this.getActivity()
     ])
-    this.setState({ userinfo: userinfo.data.list[0], list: list.data.list })
+    this.setState({ userinfo: userinfo.data.list[0], list: list.data.list, loading: false })
   }
 
   getUserInfo = async () => {
@@ -98,7 +99,13 @@ class ActivityCenter extends React.Component {
     }]
     return (
       <div style={{ margin: 18, background: 'white' }}>
-      <Table
+      <Button 
+        style={{ marginTop: 10, marginBottom: 10, marginLeft: 10}} 
+        type="primary" 
+        icon="reload" 
+        onClick={this.getData}>刷新</Button>
+      <Table  
+        loading={this.state.loading}
         columns={columns}
         expandedRowRender={record => <p style={{ margin: 0 }}>活动详情：{record.description}</p>}
         dataSource={this.state.list} />
